@@ -1,7 +1,6 @@
 import React from 'react'
 import './home.css'
-import {Link} from 'react-router-dom'
-import { useEffect,useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function Home() {
 
@@ -17,8 +16,6 @@ function Home() {
         email: ""
     })
 
-
-
     const increment = () => {
         setCount(count + 1);
     }
@@ -29,21 +26,24 @@ function Home() {
 
     useEffect(() => {
         console.log(`count updated ${count}`);
-        
-    }, []); 
+
+    }, []);
     // [] -> calls only one time when the compnent renders
     // [dependency] -> calls every time when the component renders
+
 
     return (
         <div className='title'>
             home
 
-            <input type="text" name="name" id="name" value={value.name} onChange={(e) => setValue({...value, name: e.target.value})}/>
+            <input type="text" name="name" id="name" value={value.name} onChange={(e) => setValue({ ...value, name: e.target.value })} />
 
-        <button type="submit" onClick={increment}>{count}</button>
-        <button type="submit" onClick={decrement}>{count1}</button>
+            <button type="submit" onClick={increment}>{count}</button>
+            <button type="submit" onClick={decrement}>{count1}</button>
 
         </div>
+
+
     )
 }
 
