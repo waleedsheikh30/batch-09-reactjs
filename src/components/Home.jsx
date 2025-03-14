@@ -9,6 +9,7 @@ function Home() {
     const [count, setCount] = useState(0);
     const [count1, setCount1] = useState(0);
     const [showPassword, setShowPassword] = useState(false);
+    const [users, setUsers] = useState([]);
 
     const [value, setValue] = useState({
         name: "",
@@ -25,7 +26,15 @@ function Home() {
     }
 
     useEffect(() => {
-        console.log(`count updated ${count}`);
+        fetch('https://dummyjson.com/users')
+            .then(res => res.json())
+            .then((data) => {
+                setUsers(data);
+                console.log(data);
+
+            })
+            .catch((err) => console.log("error fetching data", err));
+            
 
     }, []);
     // [] -> calls only one time when the compnent renders
@@ -41,6 +50,11 @@ function Home() {
             <button type="submit" onClick={increment}>{count}</button>
             <button type="submit" onClick={decrement}>{count1}</button>
 
+            <ul>
+                {users.map((user) => {
+                    <li key={user.id}>{user.name} {user.quantity}</li>
+})}
+            </ul>
         </div>
 
 
